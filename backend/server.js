@@ -14,7 +14,7 @@ app.use('/api/resumes', resumeRoutes);
 app.use('/api/users', userRoutes);
 
 // 🔗 MongoDB Atlas connection string
-mongoose.connect('mongodb+srv://saihardhik:nani0123@cluster0.ptgxkak.mongodb.net/resume-manager?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://@cluster0.ptgxkak.mongodb.net/resume-manager?retryWrites=true&w=majority')
   .then(() => console.log('✅ Connected to MongoDB Atlas'))
   .catch(err => console.error('❌ MongoDB Atlas connection error:', err));
 
