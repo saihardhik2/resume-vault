@@ -1,0 +1,17 @@
+<mat-card style="margin: 30px; padding: 20px;">
+  <h2>Upload Resume</h2>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="name">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Roll</mat-label>
+    <input matInput [(ngModel)]="roll">
+  </mat-form-field>
+
+  <input type="file" (change)="onFileChange($event)" />
+
+  <button mat-raised-button color="primary" (click)="upload()">Upload</button>
+</mat-card>
