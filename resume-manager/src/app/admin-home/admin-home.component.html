@@ -1,0 +1,51 @@
+<div class="admin-header">
+  <h1>📄 Resume Dashboard</h1>
+</div>
+
+<div class="card-container">
+  <mat-card class="resume-card" *ngFor="let r of resumes">
+    <mat-card-header>
+      <div mat-card-avatar class="avatar-icon"></div>
+      <mat-card-title>{{ r.name }}</mat-card-title>
+      <mat-card-subtitle>Roll: {{ r.roll }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-actions>
+      <a
+        mat-raised-button
+        color="accent"
+        [href]="'http://localhost:3000/' + r.resumePath"
+        target="_blank"
+      >
+        🔗 View Resume
+      </a>
+
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="analyzeResume(r.resumePath)"
+      >
+        🤖 Analyze
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <ng-template #noData>
+    <p class="no-data">No resumes uploaded yet.</p>
+  </ng-template>
+</div>
+
+<!-- AI Analysis Result Popup -->
+<div *ngIf="analysisResult" class="analysis-popup">
+  <h2>AI Resume Analysis</h2>
+  <p><b>Best Role:</b> {{ analysisResult.detected_role }}</p>
+  <p><b>Score:</b> {{ analysisResult.score }}%</p>
+  <p><b>Summary:</b> {{ analysisResult.summary }}</p>
+  <p>
+    <b>Missing Keywords:</b>
+    {{ analysisResult.missing_keywords.join(', ') || 'None' }}
+  </p>
+  <button mat-stroked-button color="warn" (click)="analysisResult = null">
+    Close
+  </button>
+</div>

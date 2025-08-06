@@ -3,8 +3,29 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const Resume = require('../models/Resume');
-
 const router = express.Router();
+const { spawn } = require('child_process');
+
+
+router.post('/analyze', (req, res) => {
+  const resumePath = req.body.path;
+  const scriptPath = path.join(__dirname, '../ml/analyze.py');
+
+  const python = spawn('python', [scriptPath, resumePath]);
+
+  let output = '';
+  python.stdout.on('data', (data) => output += data.toString());
+  python.stderr.on('data', (data) => console.error(data.toString()));
+
+  python.on('close', () => {
+    try {
+      const result = JSON.parse(output);
+      res.json(result);
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to parse AI output' });
+    }
+  });
+});
 
 // File Storage Setup
 const storage = multer.diskStorage({

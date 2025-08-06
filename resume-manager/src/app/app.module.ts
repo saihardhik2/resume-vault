@@ -14,10 +14,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login.component';
-import { StudentHomeComponent } from './student-home.component';
-import { AdminHomeComponent } from './admin-home.component';
-import { ResumeUploadComponent } from './resume-upload.component';
+import { LoginComponent } from './login/login.component';
+import { StudentHomeComponent } from './student-home/student-home.component';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { ResumeUploadComponent } from './resume-upload/resume-upload.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ResumeUploadComponent } from './resume-upload.component';
     LoginComponent,
     StudentHomeComponent,
     AdminHomeComponent,
-    ResumeUploadComponent
+    ResumeUploadComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

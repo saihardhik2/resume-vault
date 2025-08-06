@@ -4,6 +4,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const resumeRoutes = require('./routes/resumeRoutes');
 const userRoutes = require('./routes/userRoutes');
+const analyzeResume = require('./routes/analyzeResume');
+
 
 const app = express();
 
@@ -12,6 +14,7 @@ app.use(bodyParser.json());
 app.use('/uploads', express.static('uploads'));
 app.use('/api/resumes', resumeRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/analyze', analyzeResume);
 
 // 🔗 MongoDB Atlas connection string
 mongoose.connect('mongodb+srv://@cluster0.ptgxkak.mongodb.net/resume-manager?retryWrites=true&w=majority')
